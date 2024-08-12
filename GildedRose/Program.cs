@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GildedRoseKata.Models;
 
 namespace GildedRoseKata;
 
@@ -40,7 +41,7 @@ public class Program
 
         var app = new GildedRose(items);
 
-        int days = 2;
+        int days = 30;
         if (args.Length > 0)
         {
             days = int.Parse(args[0]) + 1;
