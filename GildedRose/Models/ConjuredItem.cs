@@ -3,9 +3,9 @@ using GildedRoseKata.Models;
 
 namespace GildedRoseKata.Items
 {
-    public class DefaultItem : BaseItem
+    public class ConjuredItem : BaseItem
     {
-        public DefaultItem(Item item) : base(item) { }
+        public ConjuredItem(Item item) : base(item) { }
 
         public override void UpdateQuality()
         {
@@ -14,8 +14,8 @@ namespace GildedRoseKata.Items
 
         private int CalculateQuality() => (_item.Quality, _item.SellIn) switch
         {
-            ( > MinQuality, < SellInThreshold) => -2,
-            ( > MinQuality, _) => -1,
+            ( > MinQuality, < SellInThreshold) => -4,
+            ( > MinQuality, _) => -2,
             _ => 0
         };
     }

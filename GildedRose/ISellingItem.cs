@@ -2,8 +2,8 @@
 {
     public interface ISellingItem
     {
-
-        public void Update();
+        public void UpdateQuality();
+        public void UpdateSellin();
 
     }
 

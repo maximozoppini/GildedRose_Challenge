@@ -98,7 +98,7 @@ public class GildedRoseTest
     }
 
     [Test, Description("Once the sell by date has passed, Quality degrades twice as fast")]
-    public void UpdateQuality_Should_ConjurasItem_LowerQuality_By_1_When_SellingPositive()
+    public void UpdateQuality_Should_ConjurasItem_LowerQuality_By_2_When_SellingPositive()
     {
         // Given the conjuras item (this item is the only one that its quality decereases)
         var item = CreateItem(CONJURAS, 10, 2);
@@ -107,12 +107,12 @@ public class GildedRoseTest
         var GR = new GildedRose(new List<Item> { item });
         GR.UpdateQuality();
 
-        // Should have quality of 9
-        Assert.That(item.Quality, Is.EqualTo(9));
+        // Should have quality of 8
+        Assert.That(item.Quality, Is.EqualTo(8));
     }
 
     [Test, Description("Once the sell by date has passed, Quality degrades twice as fast")]
-    public void UpdateQuality_Should_ConjurasItem_LowerQuality_By_2_When_SellingNegative()
+    public void UpdateQuality_Should_ConjurasItem_LowerQuality_By_4_When_SellingNegative()
     {
         // Given the conjuras item (this item is the only one that its quality decereases)
         var item = CreateItem(CONJURAS, 10, -1);
@@ -121,8 +121,8 @@ public class GildedRoseTest
         var GR = new GildedRose(new List<Item> { item });
         GR.UpdateQuality();
 
-        // Should have quality of 8
-        Assert.That(item.Quality, Is.EqualTo(8));
+        // Should have quality of 6
+        Assert.That(item.Quality, Is.EqualTo(6));
     }
 
     [Test, Description("The Quality of an item is never negative")]

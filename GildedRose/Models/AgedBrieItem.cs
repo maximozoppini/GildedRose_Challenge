@@ -11,12 +11,18 @@ namespace GildedRoseKata.Items
     {
         public AgedBrieItem(Item item) : base(item) { }
 
-        public override void Update()
+        public override void UpdateQuality()
         {
-            base.Update();
-            if (_item.SellIn < 0 && _item.Quality < 50) _item.Quality++;
-            if (_item.Quality < 50) _item.Quality++;
+            //Quality must never increase above 50
+            _item.Quality = Math.Min(_item.Quality + CalculateQuality(), MaxQuality);
         }
+
+        private int CalculateQuality() => (_item.Quality, _item.SellIn) switch
+        {
+            ( < MaxQuality, < 0) => 2,
+            ( < MaxQuality, _) => 1,
+            _ => 0
+        };
 
     }
 }
