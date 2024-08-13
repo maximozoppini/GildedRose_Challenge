@@ -169,10 +169,13 @@ public class GildedRoseTest
     }
 
     [Test, Description("The Quality of an item is never more than 50")]
-    public void UpdateQuality_Should_BrieItem_QualityBeMax50_When_SellinDecrease()
+    [TestCase(49, 5)]
+    [TestCase(49, 5)]
+    [TestCase(50, 5)]
+    public void UpdateQuality_Should_BrieItem_QualityBeMax50_When_SellinDecrease(int quality, int sellin)
     {
         // Given the brie item 
-        var item = CreateItem(BRIE, 50, 5);
+        var item = CreateItem(BRIE, quality, sellin);
 
         // When update
         var GR = new GildedRose(new List<Item> { item });
@@ -183,10 +186,15 @@ public class GildedRoseTest
     }
 
     [Test, Description("The Quality of an item is never more than 50")]
-    public void UpdateQuality_Should_BackstageItem_QualityBeMax50_When_SellinDecrease()
+    [TestCase(48, 1)]
+    [TestCase(48, 3)]
+    [TestCase(49, 5)]
+    [TestCase(49, 10)]
+    [TestCase(50, 4)]
+    public void UpdateQuality_Should_BackstageItem_QualityBeMax50_When_SellinDecrease(int quality, int sellin)
     {
         // Given the BACKSTAGE item 
-        var item = CreateItem(BACKSTAGE, 50, 5);
+        var item = CreateItem(BACKSTAGE, quality, sellin);
 
         // When update
         var GR = new GildedRose(new List<Item> { item });
@@ -196,7 +204,9 @@ public class GildedRoseTest
         Assert.That(item.Quality, Is.EqualTo(50));
     }
 
+
     [Test, Description("\"Sulfuras\", being a legendary item, never has to be sold or decreases in Quality")]
+
     public void UpdateQuality_Should_SulfuraItem_NeverLowerQualityOrSelling_When_SellinDecrease()
     {
         // Given the sulfuras item (legendary)
